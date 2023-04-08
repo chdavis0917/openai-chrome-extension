@@ -1,12 +1,12 @@
-import { Controller, Get, Post, Put, Delete, Body, Param, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Param, UsePipes, ValidationPipe, NotFoundException } from '@nestjs/common';
 import { CreateSummaryDto } from './dto/create-summary.dto';
 import { UpdateSummaryDto } from './dto/update-summary.dto';
 import { SummariesService } from './summaries.service';
 import { Summary } from './schemas/summary.schema';
 import { ApiTags } from '@nestjs/swagger';
 
-
 @Controller('summaries')
+@ApiTags('summaries')
 export class SummariesController {
   constructor(private summariesService: SummariesService) {}
 
@@ -24,15 +24,14 @@ export class SummariesController {
     return summary;
   }
 
-
   @Post()
-  @UsePipes(new ValidationPipe())
+  @UsePipes(new ValidationPipe({ transform: true }))
   async create(@Body() createSummaryDto: CreateSummaryDto): Promise<Summary> {
     return this.summariesService.create(createSummaryDto);
   }
 
   @Put(':id')
-  @UsePipes(new ValidationPipe())
+  @UsePipes(new ValidationPipe({ transform: true }))
   async update(@Param('id') id: string, @Body() updateSummaryDto: UpdateSummaryDto): Promise<Summary> {
     return this.summariesService.update(id, updateSummaryDto);
   }
