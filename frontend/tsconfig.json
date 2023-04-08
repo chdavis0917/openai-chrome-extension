@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+      "target": "es5",
+      "lib": ["dom", "es2017"],
+      "module": "esnext",
+      "moduleResolution": "node",
+      "jsx": "react",
+      "esModuleInterop": true,
+      "strict": true,
+      "noImplicitAny": true,
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "allowSyntheticDefaultImports": true,
+      "sourceMap": true
+    },
+    "exclude": ["node_modules", "build"]
+  }
+  
