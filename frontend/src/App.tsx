@@ -1,23 +1,17 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Popup from './components/Popup';
-import HighlightsList from './components/HighlightsList';
-import SummaryTooltip from './components/SummaryTooltip';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Popup from './components/Popup/Popup';
+import HighlightsList from './components/HighlightsList/HighlightsList';
+import SummaryTooltip from './components/SummaryTooltip/SummaryTooltip';
 
 function App() {
   return (
     <Router>
-      <Switch>
-        <Route exact path="/">
-          <Popup />
-        </Route>
-        <Route exact path="/highlights">
-          <HighlightsList />
-        </Route>
-        <Route exact path="/summary/:id">
-          <SummaryTooltip />
-        </Route>
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Popup />} />
+        <Route path="/highlights" element={<HighlightsList />} />
+        <Route path="/summary/:id" element={<SummaryTooltip />} />
+      </Routes>
     </Router>
   );
 }

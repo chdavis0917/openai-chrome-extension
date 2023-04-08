@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import axios from 'axios';
 import { Summary } from '../../types';
 
-interface RouteParams {
-  id: string;
-}
+
 
 const SummaryTooltip: React.FC = () => {
-  const { id } = useParams<RouteParams>();
+  const { id } = useParams();
   const [summary, setSummary] = useState<Summary>();
 
   useEffect(() => {
