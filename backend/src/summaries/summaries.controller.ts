@@ -33,8 +33,13 @@ export class SummariesController {
   @Put(':id')
   @UsePipes(new ValidationPipe({ transform: true }))
   async update(@Param('id') id: string, @Body() updateSummaryDto: UpdateSummaryDto): Promise<Summary> {
-    return this.summariesService.update(id, updateSummaryDto);
+    const updatedSummary = await this.summariesService.update(id, updateSummaryDto);
+    if (!updatedSummary) {
+      throw new NotFoundException(`Summary with id ${id} not found`);
+    }
+    return updatedSummary;
   }
+  
 
   @Delete(':id')
   async delete(@Param('id') id: string): Promise<void> {

@@ -12,6 +12,13 @@ export class CreateSummaryDto {
 
   @ApiProperty()
   highlightedText: string;
+
+  constructor(userId: string, url: string, summary: string, highlightedText: string) {
+    this.userId = userId;
+    this.url = url;
+    this.summary = summary;
+    this.highlightedText = highlightedText;
+  }
 }
 
 export class UpdateSummaryDto {
@@ -23,4 +30,10 @@ export class UpdateSummaryDto {
 
   @ApiProperty()
   highlightedText: string;
+
+  constructor(url: string, summary: string, highlightedText: string) {
+    this.url = url;
+    this.summary = summary;
+    this.highlightedText = highlightedText;
+  }
 }

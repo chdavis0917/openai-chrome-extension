@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   entry: "./frontend/src/index.tsx",
   output: {
-    path: path.resolve(__dirname, "frontend/public"),
+    path: path.resolve(__dirname, "dist"),
     filename: "index.js",
   },
   resolve: {
@@ -21,8 +21,9 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
-      },
+        use: ['style-loader', 'css-loader'],
+        include: path.join(__dirname, 'frontend/src')
+      },      
     ],
   },
   plugins: [
@@ -32,7 +33,7 @@ module.exports = {
     }),
   ],
   devServer: {
-    contentBase: path.resolve(__dirname, "frontend/public"),
+    contentBase: path.join(__dirname, "dist"),
     port: 3000,
     open: true,
   },

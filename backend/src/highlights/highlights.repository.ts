@@ -1,5 +1,5 @@
 import { EntityRepository, MongoRepository } from 'typeorm';
-import { Highlight } from './highlight.entity';
+import { Highlight } from './entities/highlight.entity';
 
 @EntityRepository(Highlight)
 export class HighlightsRepository extends MongoRepository<Highlight> {

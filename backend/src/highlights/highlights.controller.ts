@@ -1,28 +1,29 @@
-import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
 import { HighlightsService } from './highlights.service';
-import { HighlightDto } from './dto/highlight.dto';
+import { CreateHighlightDto } from './dto/create-highlight.dto';
+import { UpdateHighlightDto } from './dto/update-highlight.dto';
 
 @Controller('highlights')
 export class HighlightsController {
   constructor(private readonly highlightsService: HighlightsService) {}
 
   @Post()
-  async create(@Body() createHighlightDto: HighlightDto) {
+  create(@Body() createHighlightDto: CreateHighlightDto) {
     return this.highlightsService.create(createHighlightDto);
   }
 
   @Get(':id')
-  async findById(@Param('id') id: string) {
-    return this.highlightsService.findById(id);
+  findOne(@Param('id') id: string) {
+    return this.highlightsService.findOne(id);
   }
 
   @Put(':id')
-  async updateById(@Param('id') id: string, @Body() updateHighlightDto: HighlightDto) {
-    return this.highlightsService.updateById(id, updateHighlightDto);
+  update(@Param('id') id: string, @Body() updateHighlightDto: UpdateHighlightDto) {
+    return this.highlightsService.update(id, updateHighlightDto);
   }
 
   @Delete(':id')
-  async deleteById(@Param('id') id: string) {
-    return this.highlightsService.deleteById(id);
+  remove(@Param('id') id: string) {
+    return this.highlightsService.remove(id);
   }
 }

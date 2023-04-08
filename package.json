@@ -4,16 +4,14 @@
     "description": "A Chrome extension built with React, NestJS, and TypeScript, allowing users to highlight text and receive AI-generated summaries.",
     "main": "server.js",
     "scripts": {
-        "start": "npm run build && node server.js",
-        "build": "npm run build:client && npm run build:server",
-        "build:client": "cd client && npm run build",
-        "build:server": "cd server && npm run build",
-        "test": "jest",
-        "test:watch": "jest --watchAll",
-        "lint": "eslint .",
-        "prettier": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|less|scss|md|mdx|graphql|ts|tsx|vue)\"",
-        "prettier:check": "prettier --list-different \"**/*.+(js|jsx|json|yml|yaml|css|less|scss|md|mdx|graphql|ts|tsx|vue)\""
-    },
+        "start": "npm run start:server && npm run start:client",
+        "start:server": "cd backend && npm run start:dev",
+        "start:client": "cd frontend && npm start",
+        "build": "npm run build:server && npm run build:client",
+        "build:server": "cd backend && npm run build",
+        "build:client": "cd frontend && npm run build",
+        "test": "cd backend && npm run test"
+      },
     "repository": {
         "type": "git",
         "url": "https://github.com/chdavis0917/frontdoor-technical-challenge"

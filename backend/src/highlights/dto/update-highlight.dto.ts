@@ -7,6 +7,14 @@ export class UpdateHighlightDto {
 
   @IsOptional()
   @IsString()
+  text?: string;
+
+  @IsOptional()
+  @IsString()
+  url?: string;
+
+  @IsOptional()
+  @IsString()
   summary?: string;
 
   @IsOptional()
