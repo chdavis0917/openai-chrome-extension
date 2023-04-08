@@ -1,8 +1,8 @@
-import { Column, Entity, ObjectIdColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Summary {
-  @ObjectIdColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -17,14 +17,6 @@ export class Summary {
   @Column()
   highlightedText: string;
 
-  @Column({ type: 'date' })
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
-
-  constructor(userId: string, url: string, summary: string, highlightedText: string) {
-    this.userId = userId;
-    this.url = url;
-    this.summary = summary;
-    this.highlightedText = highlightedText;
-    this.createdAt = new Date();
-  }
 }

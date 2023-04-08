@@ -9,7 +9,7 @@ import { SummariesService } from './summaries.service';
     MongooseModule.forFeature([{ name: Summary.name, schema: SummarySchema }])
   ],
   controllers: [SummariesController],
-  providers: [SummariesService],
-  exports: [SummariesService]
+  providers: [SummariesService]
 })
 export class SummariesModule {}
+

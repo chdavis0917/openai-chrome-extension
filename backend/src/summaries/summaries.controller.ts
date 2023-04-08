@@ -2,7 +2,9 @@ import { Controller, Get, Post, Put, Delete, Body, Param, UsePipes, ValidationPi
 import { CreateSummaryDto } from './dto/create-summary.dto';
 import { UpdateSummaryDto } from './dto/update-summary.dto';
 import { SummariesService } from './summaries.service';
-import { Summary } from './interfaces/summary.interface';
+import { Summary } from './schemas/summary.schema';
+import { ApiTags } from '@nestjs/swagger';
+
 
 @Controller('summaries')
 export class SummariesController {
@@ -15,8 +17,13 @@ export class SummariesController {
 
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<Summary> {
-    return this.summariesService.findOne(id);
+    const summary = await this.summariesService.findOne(id);
+    if (!summary) {
+      throw new NotFoundException(`Summary with id ${id} not found`);
+    }
+    return summary;
   }
+
 
   @Post()
   @UsePipes(new ValidationPipe())

@@ -1,15 +1,26 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class SummaryDto {
+export class CreateSummaryDto {
   @ApiProperty()
-  id: string;
+  userId: string;
 
   @ApiProperty()
-  highlightedText: string;
+  url: string;
 
   @ApiProperty()
   summary: string;
 
   @ApiProperty()
-  createdAt: Date;
+  highlightedText: string;
+}
+
+export class UpdateSummaryDto {
+  @ApiProperty()
+  url: string;
+
+  @ApiProperty()
+  summary: string;
+
+  @ApiProperty()
+  highlightedText: string;
 }
