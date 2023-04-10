@@ -1,20 +1,14 @@
 export type Summary = {
-    id: string;
-    title: string;
+    id: number;
     content: string;
-    author: string;
-    text: string;
-    url: string;
-    highlightedText: string;
-    start: number;
-    end: number;
+    title: string;
   };
   
 
   export type Highlight = {
     id: number;
     url: string;
-    quote: string;
+    text: string;
   };
 
   

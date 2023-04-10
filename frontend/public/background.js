@@ -1,50 +1,56 @@
 /*global chrome*/
+import axios from 'axios';
+
+// Store highlights in a temporary array until the user is done highlighting
+const highlights = [];
+
 // Establish connection with content scripts and popup
 chrome.runtime.onConnect.addListener(function(port) {
-    console.log("Connected with port: ", port);
-  
-    // Listen for messages from content script
-    port.onMessage.addListener(function(message) {
-      console.log("Received message from content script: ", message);
-  
-      // Send message to OpenAI API
-      fetch('https://api.openai.com/v1/engines/davinci-codex/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer YOUR_OPENAI_API_KEY'
-        },
-        body: JSON.stringify({
-          prompt: message.highlightedText,
-          max_tokens: 50
-        })
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Received response from OpenAI API: ', data);
-  
-        // Send message to content script with summary
-        port.postMessage({ summary: data.choices[0].text });
-      })
-      .catch(error => console.error(error));
-    });
-  });
-  
-  // Listen for messages from popup
-  chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-    console.log("Received message from popup: ", message);
-  
-    // Save highlight and summary to storage
-    chrome.storage.local.get(['highlights'], function(result) {
-      let highlights = result.highlights || [];
+  console.log("Connected with port: ", port);
+
+  // Listen for messages from content script
+  port.onMessage.addListener(function(message) {
+    console.log("Received message from content script: ", message);
+
+    // Send message to backend to generate summary
+    axios.post('/api/summary', {
+      url: message.url,
+      highlightedText: message.highlightedText
+    })
+    .then(response => {
+      console.log('Received response from backend: ', response.data);
+
+      // Send message to content script with summary
+      port.postMessage({ summary: response.data.summary });
+
+      // Add highlight to temporary array with the generated summary
       highlights.push({
         url: message.url,
         text: message.highlightedText,
-        summary: message.summary
+        summary: response.data.summary
       });
-      chrome.storage.local.set({ highlights: highlights }, function() {
-        console.log('Highlight saved: ', message.highlightedText);
-      });
-    });
+    })
+    .catch(error => console.error(error));
   });
-  
+});
+
+// Listen for messages from popup
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+  console.log("Received message from popup: ", message);
+
+  // Add highlight to temporary array without summary
+  highlights.push({
+    url: message.url,
+    text: message.highlightedText,
+  });
+
+  // If user is done highlighting, send all highlights to server
+  if (message.done) {
+    axios.post('/api/highlights', { highlights })
+      .then(response => console.log('Highlights saved:', response.data))
+      .catch(error => console.error(error));
+
+    // Clear temporary array
+    highlights.length = 0;
+  }
+});

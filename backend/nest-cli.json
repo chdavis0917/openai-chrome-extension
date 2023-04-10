@@ -1,9 +1,6 @@
 {
     "collection": "@nestjs/schematics",
     "sourceRoot": "src",
-    "compilerOptions": {
-      "plugins": ["@nestjs/graphql/plugin"]
-    },
     "language": "ts",
     "path": "src",
     "skipGit": true,

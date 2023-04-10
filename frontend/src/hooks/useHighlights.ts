@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Highlight } from '../types';
 
-export const useHighlights = (initialHighlights: Highlight[]) => {
-  const [highlights, setHighlights] = useState(initialHighlights);
+export const useHighlights = () => {
+  const [highlights, setHighlights] = useState<Highlight[]>([]);
 
   useEffect(() => {
     const fetchHighlights = async () => {
@@ -17,15 +17,6 @@ export const useHighlights = (initialHighlights: Highlight[]) => {
     fetchHighlights();
   }, []);
 
-  const addHighlight = async (newHighlight: Highlight) => {
-    try {
-      const response = await axios.post('/api/highlights', newHighlight);
-      setHighlights((prevHighlights) => [...prevHighlights, response.data]);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const deleteHighlight = async (id: number) => {
     try {
       await axios.delete(`/api/highlights/${id}`);
@@ -36,7 +27,6 @@ export const useHighlights = (initialHighlights: Highlight[]) => {
       console.log(error);
     }
   };
-  
 
-  return { highlights, addHighlight, deleteHighlight };
+  return { highlights, deleteHighlight };
 };

@@ -14,11 +14,11 @@
         "http://*/*"
       ],
       "css": ["./frontend/public/index.css"],
-      "js": ["./frontend/src/index.tsx"],
+      "js": ["./build/index.js"],
       "run_at": "document_end"
     }
   ],
   "action": {
-    "default_popup": "./frontend/public/index.html"
+    "default_popup": "./build/index.html"
   }
 }

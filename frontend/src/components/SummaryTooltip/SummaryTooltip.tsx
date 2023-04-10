@@ -1,20 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { useParams} from 'react-router-dom';
-import axios from 'axios';
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import useSummaries from '../../hooks/useSummaries';
 import { Summary } from '../../types';
 
-
-
 const SummaryTooltip: React.FC = () => {
-  const { id } = useParams();
-  const [summary, setSummary] = useState<Summary>();
-
-  useEffect(() => {
-    axios
-      .get<Summary>(`https://api.example.com/summaries/${id}`)
-      .then((response) => setSummary(response.data))
-      .catch((error) => console.log(error));
-  }, [id]);
+  const { id } = useParams<{ id: string }>();
+  const { summaries } = useSummaries();
+  const summary = summaries.find((s: Summary) => s.id === Number(id));
 
   if (!summary) {
     return <div>Loading summary...</div>;
@@ -24,7 +16,6 @@ const SummaryTooltip: React.FC = () => {
     <div>
       <h2>{summary.title}</h2>
       <p>{summary.content}</p>
-      <p>Author: {summary.author}</p>
     </div>
   );
 };

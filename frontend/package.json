@@ -3,37 +3,38 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-      "@types/chrome": "^0.0.228",
-      "@types/react": "^18.0.33",
-      "@types/react-dom": "^18.0.11",
-      "react": "^18.2.0",
-      "react-dom": "^18.2.0",
-      "react-router-dom": "^6.10.0",
-      "typescript": "^4.4.4"
+        "@nestjs/graphql": "^11.0.4",
+        "@types/chrome": "^0.0.228",
+        "@types/react": "^18.0.33",
+        "@types/react-dom": "^18.0.11",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-router-dom": "^6.10.0",
+        "typescript": "^4.4.4"
     },
     "scripts": {
-      "start": "webpack serve --config ./webpack.config.js",
-      "build": "webpack --config ./webpack.config.js",
-      "test": "react-scripts test",
-      "eject": "react-scripts eject"
+        "start": "webpack serve --config ../webpack.config.js",
+        "build": "webpack --config ../webpack.config.js && npm run postbuild",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "postbuild": "webpack serve --config ../webpack.config.js"
     },
     "eslintConfig": {
-      "extends": [
-        "react-app",
-        "react-app/jest"
-      ]
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
     },
     "browserslist": {
-      "production": [
-        ">0.2%",
-        "not dead",
-        "not op_mini all"
-      ],
-      "development": [
-        "last 1 chrome version",
-        "last 1 firefox version",
-        "last 1 safari version"
-      ]
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
     }
-  }
-  
+}
