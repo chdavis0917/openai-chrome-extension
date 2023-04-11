@@ -1,15 +1,18 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 
 module.exports = {
-  mode: "development",
-  entry: "./src/index.tsx",
+  mode: "production",
+  entry: './src/index.tsx',
   output: {
-    path: path.join(__dirname, "build"),
-    filename: "index.js",
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'build'),
+    clean: true,
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: ['.ts', '.tsx', '.js'],
   },
   module: {
     rules: [
@@ -17,7 +20,7 @@ module.exports = {
         test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-react', '@babel/preset-typescript'],
           },
@@ -25,16 +28,16 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
-            loader: "file-loader",
+            loader: 'file-loader',
             options: {
-              name: "[name].[ext]",
-              outputPath: "assets",
+              name: '[name].[ext]',
+              outputPath: 'assets',
             },
           },
         ],
@@ -43,20 +46,25 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./public/index.html",
+      template: './public/index.html',
+      filename: 'index.html', // explicitly specify output filename
     }),
+    new MiniCssExtractPlugin({
+      filename: 'styles/[name].css',
+    })
   ],
   devServer: {
     static: {
-      directory: path.join(__dirname, "build")
+      directory: path.join(__dirname, 'build'),
     },
     port: 3000,
     open: true,
     proxy: {
       '/api': {
         target: 'http://localhost:3001',
-        secure: false
+        secure: false,
       }
-    }
-  },
+    },
+    historyApiFallback: true, // fallback to index.html for unknown URLs
+  }
 };

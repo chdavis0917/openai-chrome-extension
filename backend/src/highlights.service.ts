@@ -12,13 +12,15 @@ export class HighlightsService {
     private readonly configService: ConfigService,
   ) {}
 
-  async createHighlight(
-    url: string,
-    highlightedText: string,
-  ): Promise<HighlightDocument> {
-    const highlight = new this.highlightModel({ url, highlightedText: highlightedText });
+  async createHighlight(url: string, highlightedText: string): Promise<HighlightDocument> {
+    const highlight = new this.highlightModel({
+      _id: new Types.ObjectId(),
+      url,
+      highlightedText
+    });
     return await highlight.save();
   }
+  
   
 
   async findAll(): Promise<Highlight[]> {

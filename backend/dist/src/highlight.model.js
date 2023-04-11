@@ -27,7 +27,7 @@ let Highlight = class Highlight {
     }
 };
 __decorate([
-    (0, mongoose_1.Prop)({ type: mongoose_2.Types.ObjectId }),
+    (0, mongoose_1.Prop)({ type: mongoose_2.Types.ObjectId, required: true, auto: true }),
     __metadata("design:type", mongoose_2.Types.ObjectId)
 ], Highlight.prototype, "_id", void 0);
 __decorate([

@@ -12,7 +12,7 @@
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint \"src/**/*.ts\"",
-    "test": "jest",
+    "test": "jest ./test/**/*.test.ts",
     "test:watch": "jest --watch"
   },
   "repository": {

@@ -5,7 +5,7 @@ export type HighlightDocument = Highlight & Document;
 
 @Schema()
 export class Highlight {
-  @Prop({ type: Types.ObjectId })
+  @Prop({ type: Types.ObjectId, required: true, auto: true })
   _id: Types.ObjectId;
 
   @Prop()
