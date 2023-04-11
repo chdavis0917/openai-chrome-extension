@@ -7,31 +7,31 @@ export class OpenAIService {
 
   constructor() {
     const configuration = new Configuration({
-      organization: process.env.ORGANIZATION,
       apiKey: process.env.OPENAI_API_KEY,
     });
     this.openai = new OpenAIApi(configuration);
   }
   
   async generateSummary(highlightedText: string) {
-    // console.log("What is OpenAI?", OpenAIApi);
-    const prompt = `Please summarize the following text: "${highlightedText}"`;
-    // console.log("openai is defined as:", this.openai);
+    try {
+      const prompt = `Please summarize the following text: "${highlightedText}"`;
   
-    const response = await this.openai.createCompletion({
-      model: "text-davinci-001",
-      prompt,
-      max_tokens: 7,
-      temperature: 0,
-    });
   
-    // console.log("response is:", response);
+      const response = await this.openai.createCompletion({
+        model: "text-davinci-003",
+        prompt,
+        max_tokens: 100,
+        temperature: 0.5,
+      });
   
-    // Wait for 5 seconds before making the next request
-    await new Promise(resolve => setTimeout(resolve, 5000));
+      // Wait for 5 seconds before making the next request
+      await new Promise(resolve => setTimeout(resolve, 5000));
   
-    // const result = response.data;
-    return "hi";
+      const result = response.data;
+      return result.choices[0];
+    } catch (err: any) {
+      console.error("Error in generateSummary:", err.response?.data);
+      throw err;
+    }
   }
-  
 }

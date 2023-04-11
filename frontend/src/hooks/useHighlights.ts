@@ -1,15 +1,22 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Highlight } from '../types';
+import { ReturnedHighlightData } from '../types';
 
 export const useHighlights = () => {
-  const [highlights, setHighlights] = useState<Highlight[]>([]);
+  const [highlights, setHighlights] = useState<ReturnedHighlightData[]>([]);
+  const [returnedHighlightData, setReturnedHighlightData] = useState<ReturnedHighlightData[]>([]);
 
   useEffect(() => {
     const fetchHighlights = async () => {
       try {
         const response = await axios.get('/api/highlights');
-        setHighlights(response.data);
+        setHighlights(response.data.map((highlight: ReturnedHighlightData) => ({
+          _id: highlight._id,
+          url: highlight.url,
+          highlightedText: highlight.highlightedText,
+          summary: highlight.summary
+        })));
+        setReturnedHighlightData(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -17,16 +24,19 @@ export const useHighlights = () => {
     fetchHighlights();
   }, []);
 
-  const deleteHighlight = async (id: number) => {
+  const deleteHighlight = async (_id: string) => {
     try {
-      await axios.delete(`/api/highlights/${id}`);
+      await axios.delete(`/api/highlights/${_id}`);
       setHighlights((prevHighlights) =>
-        prevHighlights.filter((highlight) => highlight.id !== id)
+        prevHighlights.filter((highlight) => highlight._id !== _id)
+      );
+      setReturnedHighlightData((prevReturnedHighlightData) =>
+        prevReturnedHighlightData.filter((highlight) => highlight._id !== _id)
       );
     } catch (error) {
       console.log(error);
     }
   };
 
-  return { highlights, deleteHighlight };
+  return { highlights, deleteHighlight, returnedHighlightData };
 };

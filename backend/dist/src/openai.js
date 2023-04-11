@@ -24,27 +24,30 @@ const openai_1 = require("openai");
 let OpenAIService = class OpenAIService {
     constructor() {
         const configuration = new openai_1.Configuration({
-            organization: "org-wq5D7NEcbOTQS0V4mbgr2Ffd",
-            apiKey: "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",
+            apiKey: process.env.OPENAI_API_KEY,
         });
         this.openai = new openai_1.OpenAIApi(configuration);
     }
     generateSummary(highlightedText) {
+        var _a;
         return __awaiter(this, void 0, void 0, function* () {
-            // console.log("What is OpenAI?", OpenAIApi);
-            const prompt = `Please summarize the following text: "${highlightedText}"`;
-            // console.log("openai is defined as:", this.openai);
-            const response = yield this.openai.createCompletion({
-                model: "text-davinci-001",
-                prompt,
-                max_tokens: 7,
-                temperature: 0,
-            });
-            // console.log("response is:", response);
-            // Wait for 5 seconds before making the next request
-            yield new Promise(resolve => setTimeout(resolve, 5000));
-            // const result = response.data;
-            return "hi";
+            try {
+                const prompt = `Please summarize the following text: "${highlightedText}"`;
+                const response = yield this.openai.createCompletion({
+                    model: "text-davinci-003",
+                    prompt,
+                    max_tokens: 100,
+                    temperature: 0.5,
+                });
+                // Wait for 5 seconds before making the next request
+                yield new Promise(resolve => setTimeout(resolve, 5000));
+                const result = response.data;
+                return result.choices[0];
+            }
+            catch (err) {
+                console.error("Error in generateSummary:", (_a = err.response) === null || _a === void 0 ? void 0 : _a.data);
+                throw err;
+            }
         });
     }
 };

@@ -1,18 +1,18 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Summary } from '../types';
+// import { useState, useEffect } from 'react';
+// import axios from 'axios';
+// import { Summary } from '../types';
 
-const useSummaries = () => {
-  const [summaries, setSummaries] = useState<Summary[]>([]);
+// const useSummaries = () => {
+//   const [summaries, setSummaries] = useState<Summary[]>([]);
 
-  useEffect(() => {
-    axios
-      .get('https://api.example.com/summaries')
-      .then((response) => setSummaries(response.data))
-      .catch((error) => console.log(error));
-  }, []);
+//   useEffect(() => {
+//     axios
+//       .get('api/summaries')
+//       .then((response) => setSummaries(response.data))
+//       .catch((error) => console.log(error));
+//   }, []);
 
-  return { summaries };
-};
+//   return { summaries };
+// };
 
-export default useSummaries;
+// export default useSummaries;

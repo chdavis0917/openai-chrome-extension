@@ -4,6 +4,6 @@ export declare class AppController {
     private readonly appService;
     constructor(appService: AppService);
     highlight(body: Highlight): Promise<{
-        summary: string;
+        summary: import("openai").CreateCompletionResponseChoicesInner;
     }>;
 }

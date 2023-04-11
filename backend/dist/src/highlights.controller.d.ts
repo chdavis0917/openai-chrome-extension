@@ -9,7 +9,7 @@ export declare class HighlightsController {
         highlightedText: string;
     }): Promise<import("./highlight.model").HighlightDocument>;
     findAll(): Promise<{
-        summary: string;
+        summary: import("openai").CreateCompletionResponseChoicesInner;
         id: number;
         url: string;
         highlightedText: string;

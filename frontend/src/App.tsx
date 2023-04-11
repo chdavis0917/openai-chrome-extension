@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Popup />} />
         <Route path="/highlights" element={<HighlightsList />} />
-        <Route path="/summary/:id" element={<SummaryTooltip />} />
+        <Route path="/summary/:_id" element={<SummaryTooltip />} />
       </Routes>
     </Router>
   );

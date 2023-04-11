@@ -11,7 +11,7 @@
     },
     "scripts": {
         "start": "concurrently \"npm run start:server\" \"npm run start:client\"",
-        "start:server": "cd backend && npm run start:dev",
+        "start:server": "cd backend && npm run start",
         "start:client": "cd frontend && webpack serve --config ../webpack.config.js",
         "build": "npm run build:server && npm run build:client",
         "build:server": "cd backend && npm run build",

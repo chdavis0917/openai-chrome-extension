@@ -9,6 +9,6 @@ export declare class AppService {
         url: string;
         highlightedText: string;
     }): Promise<{
-        summary: string;
+        summary: import("openai").CreateCompletionResponseChoicesInner;
     }>;
 }

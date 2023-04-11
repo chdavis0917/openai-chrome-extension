@@ -35,11 +35,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@nestjs/core");
 const app_module_1 = require("./app.module");
 const dotenv = __importStar(require("dotenv"));
+const path_1 = require("path");
+const express = __importStar(require("express"));
 function bootstrap() {
     return __awaiter(this, void 0, void 0, function* () {
         dotenv.config();
         const app = yield core_1.NestFactory.create(app_module_1.AppModule);
-        yield app.listen(3000);
+        // Serve frontend files
+        app.use(express.static((0, path_1.join)(__dirname, '..', 'frontend')));
+        yield app.listen(3001);
     });
 }
 bootstrap();
