@@ -7,7 +7,7 @@ module.exports = {
   mode: "production",
   entry: './src/index.tsx',
   output: {
-    filename: '[name].js',
+    filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'build'),
     clean: true,
   },
@@ -44,13 +44,18 @@ module.exports = {
       },
     ],
   },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
       filename: 'index.html', // explicitly specify output filename
     }),
     new MiniCssExtractPlugin({
-      filename: 'styles/[name].css',
+      filename: 'styles/[name].[contenthash].css',
     })
   ],
   devServer: {
