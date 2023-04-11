@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Delete, Param } from '@nestjs/common';
 import { HighlightsService } from './highlights.service';
 import { CreateHighlightDTO } from './create-highlight.dto';
 import { OpenAIService } from './openai';
@@ -34,4 +34,11 @@ export class HighlightsController {
       summary: summaries[index],
     }));
   }
+
+  @Delete('highlights/:_id')
+  async deleteHighlight(@Param('_id') _id: string) {
+    await this.highlightsService.deleteHighlight(_id);
+    return { message: `Highlight with id ${_id} has been deleted` };
+  }
+  
 }

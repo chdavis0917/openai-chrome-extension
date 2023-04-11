@@ -1,12 +1,12 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
 export type HighlightDocument = Highlight & Document;
 
 @Schema()
 export class Highlight {
-  @Prop()
-  id: number;
+  @Prop({ type: Types.ObjectId })
+  _id: Types.ObjectId;
 
   @Prop()
   url: string;
@@ -16,16 +16,16 @@ export class Highlight {
 
   toJSON() {
     return {
-      id: this.id,
+      _id: this._id,
       url: this.url,
       highlightedText: this.highlightedText,
     };
   }
 
-  constructor(id: number, url: string, text: string) {
-    this.id = id;
+  constructor(_id:Types.ObjectId, url: string, highlightedText: string) {
+    this._id = _id;
     this.url = url;
-    this.highlightedText = text;
+    this.highlightedText = highlightedText;
   }
 }
 

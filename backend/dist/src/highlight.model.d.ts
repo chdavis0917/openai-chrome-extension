@@ -22,21 +22,21 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 export type HighlightDocument = Highlight & Document;
 export declare class Highlight {
-    id: number;
+    _id: Types.ObjectId;
     url: string;
     highlightedText: string;
     toJSON(): {
-        id: number;
+        _id: Types.ObjectId;
         url: string;
         highlightedText: string;
     };
-    constructor(id: number, url: string, text: string);
+    constructor(_id: Types.ObjectId, url: string, highlightedText: string);
 }
-export declare const HighlightSchema: import("mongoose").Schema<Highlight, import("mongoose").Model<Highlight, any, any, any, Document<unknown, any, Highlight> & Omit<Highlight & {
-    _id: import("mongoose").Types.ObjectId;
-}, never>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Highlight, Document<unknown, {}, import("mongoose").FlatRecord<Highlight>> & Omit<import("mongoose").FlatRecord<Highlight> & {
-    _id: import("mongoose").Types.ObjectId;
-}, never>>;
+export declare const HighlightSchema: import("mongoose").Schema<Highlight, import("mongoose").Model<Highlight, any, any, any, Document<unknown, any, Highlight> & Omit<Highlight & Required<{
+    _id: Types.ObjectId;
+}>, never>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Highlight, Document<unknown, {}, import("mongoose").FlatRecord<Highlight>> & Omit<import("mongoose").FlatRecord<Highlight> & Required<{
+    _id: Types.ObjectId;
+}>, never>>;

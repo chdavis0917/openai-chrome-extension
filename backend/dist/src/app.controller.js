@@ -34,6 +34,11 @@ let AppController = class AppController {
             return this.appService.processHighlight(body);
         });
     }
+    deleteHighlight(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.appService.deleteHighlight(id);
+        });
+    }
 };
 __decorate([
     (0, common_1.Post)('/highlight'),
@@ -42,6 +47,13 @@ __decorate([
     __metadata("design:paramtypes", [highlight_model_1.Highlight]),
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "highlight", null);
+__decorate([
+    (0, common_1.Delete)('/highlight/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "deleteHighlight", null);
 AppController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [app_service_1.AppService])

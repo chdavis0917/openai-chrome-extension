@@ -7,6 +7,6 @@ export declare class HighlightsService {
     constructor(highlightModel: Model<Highlight>, configService: ConfigService);
     createHighlight(url: string, highlightedText: string): Promise<HighlightDocument>;
     findAll(): Promise<Highlight[]>;
-    deleteHighlight(id: number): Promise<Highlight>;
+    deleteHighlight(_id: string): Promise<Highlight>;
     updateHighlight(id: number, url: string, highlightedText: string): Promise<Highlight>;
 }

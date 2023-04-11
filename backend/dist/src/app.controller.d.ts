@@ -6,4 +6,7 @@ export declare class AppController {
     highlight(body: Highlight): Promise<{
         summary: import("openai").CreateCompletionResponseChoicesInner;
     }>;
+    deleteHighlight(id: string): Promise<{
+        message: string;
+    }>;
 }

@@ -18,4 +18,9 @@ export class AppService {
     return { summary };
 }
 
+  async deleteHighlight(id: string) {
+    await this.highlightModel.deleteOne({ _id: id });
+    return { message: `Highlight with id ${id} has been deleted` };
+}
+
 }

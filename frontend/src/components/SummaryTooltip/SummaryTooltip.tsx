@@ -8,8 +8,6 @@ const SummaryTooltip: React.FC = () => {
   const { highlights } = useHighlights();
   const highlight = highlights.find((h: ReturnedHighlightData) => h._id === _id);
 
-  // console.log("What is _id?", _id);
-  // console.log("What is highlight in summaryTooltip?", highlight)
 
   if (!highlight) {
     return <div>Loading summary...</div>;

@@ -11,4 +11,7 @@ export declare class AppService {
     }): Promise<{
         summary: import("openai").CreateCompletionResponseChoicesInner;
     }>;
+    deleteHighlight(id: string): Promise<{
+        message: string;
+    }>;
 }

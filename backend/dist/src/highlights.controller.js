@@ -45,6 +45,12 @@ let HighlightsController = class HighlightsController {
             return highlights.map((highlight, index) => (Object.assign(Object.assign({}, highlight.toJSON()), { summary: summaries[index] })));
         });
     }
+    deleteHighlight(_id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.highlightsService.deleteHighlight(_id);
+            return { message: `Highlight with id ${_id} has been deleted` };
+        });
+    }
 };
 __decorate([
     (0, common_1.Post)('summary'),
@@ -59,6 +65,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], HighlightsController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Delete)('highlights/:_id'),
+    __param(0, (0, common_1.Param)('_id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], HighlightsController.prototype, "deleteHighlight", null);
 HighlightsController = __decorate([
     (0, common_1.Controller)('api'),
     __metadata("design:paramtypes", [highlights_service_1.HighlightsService,

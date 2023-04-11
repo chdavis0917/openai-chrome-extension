@@ -11,24 +11,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HighlightSchema = exports.Highlight = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
+const mongoose_2 = require("mongoose");
 let Highlight = class Highlight {
     toJSON() {
         return {
-            id: this.id,
+            _id: this._id,
             url: this.url,
             highlightedText: this.highlightedText,
         };
     }
-    constructor(id, url, text) {
-        this.id = id;
+    constructor(_id, url, highlightedText) {
+        this._id = _id;
         this.url = url;
-        this.highlightedText = text;
+        this.highlightedText = highlightedText;
     }
 };
 __decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", Number)
-], Highlight.prototype, "id", void 0);
+    (0, mongoose_1.Prop)({ type: mongoose_2.Types.ObjectId }),
+    __metadata("design:type", mongoose_2.Types.ObjectId)
+], Highlight.prototype, "_id", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
@@ -39,7 +40,7 @@ __decorate([
 ], Highlight.prototype, "highlightedText", void 0);
 Highlight = __decorate([
     (0, mongoose_1.Schema)(),
-    __metadata("design:paramtypes", [Number, String, String])
+    __metadata("design:paramtypes", [mongoose_2.Types.ObjectId, String, String])
 ], Highlight);
 exports.Highlight = Highlight;
 exports.HighlightSchema = mongoose_1.SchemaFactory.createForClass(Highlight);

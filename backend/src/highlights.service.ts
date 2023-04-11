@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { Highlight, HighlightDocument } from './highlight.model';
 import { ConfigService } from '@nestjs/config';
 
@@ -25,13 +25,16 @@ export class HighlightsService {
     return await this.highlightModel.find().exec();
   }
 
-  async deleteHighlight(id: number): Promise<Highlight> {
-    const highlight = await this.highlightModel.findOneAndRemove({ id }).exec();
+  async deleteHighlight(_id: string): Promise<Highlight> {
+    const highlight = await this.highlightModel.findOneAndRemove({ _id: new Types.ObjectId(_id) }).exec();
     if (!highlight) {
-      throw new Error(`Highlight with ID ${id} not found`);
+      throw new Error(`Highlight with _id ${_id} not found`);
     }
     return highlight;
-  }
+}
+
+  
+  
 
   async updateHighlight(id: number, url: string, highlightedText: string): Promise<Highlight> {
     const highlight = await this.highlightModel.findOne({ id }).exec();

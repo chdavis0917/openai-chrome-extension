@@ -5,7 +5,6 @@ import { ReturnedHighlightData } from '../../types';
 
 function HighlightsList() {
   const { highlights, deleteHighlight } = useHighlights();
-  console.log("what do highlights look like?", highlights);
 
   return (
     <div>

@@ -39,6 +39,12 @@ let AppService = class AppService {
             return { summary };
         });
     }
+    deleteHighlight(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.highlightModel.deleteOne({ _id: id });
+            return { message: `Highlight with id ${id} has been deleted` };
+        });
+    }
 };
 AppService = __decorate([
     (0, common_1.Injectable)(),

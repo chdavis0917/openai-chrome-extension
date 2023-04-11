@@ -43,11 +43,12 @@ let HighlightsService = class HighlightsService {
             return yield this.highlightModel.find().exec();
         });
     }
-    deleteHighlight(id) {
+    deleteHighlight(_id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const highlight = yield this.highlightModel.findOneAndRemove({ id }).exec();
+            console.log("_id in deleteHighlight is:", _id);
+            const highlight = yield this.highlightModel.findOneAndRemove({ _id: new mongoose_2.Types.ObjectId(_id) }).exec();
             if (!highlight) {
-                throw new Error(`Highlight with ID ${id} not found`);
+                throw new Error(`Highlight with _id ${_id} not found`);
             }
             return highlight;
         });
