@@ -36,3 +36,21 @@ self.addEventListener('mouseup', function(event) {
     xhr.send(JSON.stringify({ text: selectedText }));
   }
 });
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.message === 'getSummary') {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/api/summary', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        const summary = xhr.responseText;
+        console.log("what is summary?", sumary);
+        sendResponse({ summary });
+      }
+    };
+    xhr.send(JSON.stringify({ text: request.text }));
+    return true; // Need to return true to indicate that we will send the response asynchronously
+  }
+});
+

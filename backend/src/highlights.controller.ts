@@ -1,6 +1,5 @@
 import { Body, Controller, Get, Post, Delete, Param } from '@nestjs/common';
 import { HighlightsService } from './highlights.service';
-import { CreateHighlightDTO } from './create-highlight.dto';
 import { OpenAIService } from './openai';
 
 @Controller('api')

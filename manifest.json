@@ -2,26 +2,19 @@
   "manifest_version": 3,
   "name": "Frontdoor AI Summaries",
   "version": "1.0.0",
-  "host_permissions": ["http://localhost:3001/"],
   "permissions": ["activeTab"],
-  "content_scripts": [],
   "background": {
-    "service_worker": "background.js",
-    "type": "module"
+    "service_worker": "background.js"
   },
   "action": {
     "default_title": "Frontdoor AI Summaries",
     "default_popup": "build/index.html"
   },
-  "web_accessible_resources": [
+  "content_scripts": [
     {
-      "resources": [
-        "build/*"
-      ],
-      "matches": [
-        "https://*/*",
-        "http://*/*"
-      ]
+      "matches": ["http://*/*", "https://*/*", "<all_urls>"],
+      "js": ["build/bundle.js"],
+      "css": ["build/styles/main.css"]
     }
   ]
 }

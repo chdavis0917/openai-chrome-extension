@@ -2,12 +2,11 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-
 module.exports = {
   mode: "production",
   entry: './src/index.tsx',
   output: {
-    filename: '[name].[contenthash].js',
+    filename: 'bundle.js',
     path: path.resolve(__dirname, 'build'),
     clean: true,
   },
@@ -22,7 +21,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-react', '@babel/preset-typescript'],
+            presets: [ '@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
           },
         },
       },
@@ -44,18 +43,13 @@ module.exports = {
       },
     ],
   },
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-    },
-  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
       filename: 'index.html', // explicitly specify output filename
     }),
     new MiniCssExtractPlugin({
-      filename: 'styles/[name].[contenthash].css',
+      filename: 'styles/[name].css',
     })
   ],
   devServer: {

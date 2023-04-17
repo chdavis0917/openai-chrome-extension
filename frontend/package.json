@@ -3,7 +3,6 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-        "@nestjs/graphql": "^11.0.4",
         "@testing-library/react": "^14.0.0",
         "@testing-library/user-event": "^14.4.3",
         "@types/chrome": "^0.0.228",
@@ -16,12 +15,11 @@
     },
     "scripts": {
         "start": "webpack serve --config ../webpack.config.js",
-        "build": "webpack --config ../webpack.config.js && npm run postbuild",
+        "build": "webpack --config ../webpack.config.js",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "postbuild": "webpack serve --config ../webpack.config.js",
         "test:unit": "jest src/test/HighlightsList.test.tsx"
-      },
+    },
     "eslintConfig": {
         "extends": [
             "react-app",
