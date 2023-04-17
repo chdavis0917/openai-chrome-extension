@@ -11,7 +11,9 @@ self.addEventListener('fetch', function(event) {
 });
 
 self.addEventListener('mouseup', function(event) {
+  console.log('mouseup event:', event);
   var selectedText = window.getSelection().toString();
+  console.log("selectedText", selectedText);
   if(selectedText.length) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/api/summary', true);
@@ -45,7 +47,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     xhr.onreadystatechange = function() {
       if (xhr.readyState === 4 && xhr.status === 200) {
         const summary = xhr.responseText;
-        console.log("what is summary?", sumary);
+        console.log("what is summary?", summary);
         sendResponse({ summary });
       }
     };
