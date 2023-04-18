@@ -57,12 +57,18 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "moduleFileExtensions": ["js", "json", "ts"],
-    "testMatch": ["**/test/*.test.ts"],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "testMatch": [
+      "**/test/*.test.ts"
+    ],
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "coverageDirectory": "../coverage",
     "testTimeout": 30000
-  }  
+  }
 }

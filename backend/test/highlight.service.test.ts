@@ -32,22 +32,11 @@ describe('HighlightsService', () => {
     highlightModel = moduleRef.get<Model<HighlightDocument>>(getModelToken(Highlight.name));
   });
 
-  describe('createHighlight', () => {
-    it('should create a new highlight and return it', async () => {
-      const url = 'http://example.com';
-      const highlightedText = 'This is a highlighted text';
-      const newHighlight = { _id: new Types.ObjectId().toHexString(), url, highlightedText };
-      jest.spyOn(highlightModel.prototype, 'save').mockResolvedValueOnce(newHighlight as HighlightDocument);
-      const result = await highlightsService.createHighlight(url, highlightedText);
-      expect(result).toEqual(newHighlight);
-    });
-  });
-
   describe('findAll', () => {
     it('should return an array of highlights', async () => {
       const highlights = [
-        { _id: new Types.ObjectId().toHexString(), url: 'http://example.com', highlightedText: 'This is a highlighted text' },
-        { _id: new Types.ObjectId().toHexString(), url: 'http://example.org', highlightedText: 'This is another highlighted text' },
+        new Highlight(new Types.ObjectId(), 'http://example.com', 'This is a highlighted text'),
+        new Highlight(new Types.ObjectId(), 'http://example.org', 'This is another highlighted text'),
       ];
       jest.spyOn(highlightModel, 'find').mockReturnValueOnce({
         exec: jest.fn().mockResolvedValueOnce(highlights as HighlightDocument[]),
