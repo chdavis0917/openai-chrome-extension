@@ -12,7 +12,7 @@
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint \"src/**/*.ts\"",
-    "test": "jest ./test/**/*.test.ts",
+    "test": "jest",
     "test:watch": "jest --watch"
   },
   "repository": {
@@ -43,20 +43,6 @@
     "openai": "^3.2.1",
     "reflect-metadata": "^0.1.13"
   },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "rootDir": "src",
-    "testRegex": ".spec.ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
-  },
   "devDependencies": {
     "@nestjs/cli": "^9.3.0",
     "@nestjs/testing": "^9.4.0",
@@ -68,5 +54,15 @@
     "prettier": "^2.8.7",
     "ts-jest": "^29.1.0",
     "typescript": "^5.0.4"
-  }
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "moduleFileExtensions": ["js", "json", "ts"],
+    "testMatch": ["**/test/*.test.ts"],
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "coverageDirectory": "../coverage",
+    "testTimeout": 30000
+  }  
 }
