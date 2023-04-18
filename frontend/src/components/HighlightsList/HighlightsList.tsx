@@ -32,7 +32,6 @@ function HighlightsList() {
         <p>Loading...</p>
       ) : (
         <ul>
-          {/* use the memoized list item component */}
           {highlights.map((highlight: ReturnedHighlightData) => (
             <HighlightListItem key={highlight._id} highlight={highlight} onDelete={deleteHighlight} />
           ))}
