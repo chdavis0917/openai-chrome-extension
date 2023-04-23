@@ -61,6 +61,8 @@ __decorate([
 ], HighlightsController.prototype, "getSummary", null);
 __decorate([
     (0, common_1.Get)('highlights'),
+    (0, common_1.Header)('Access-Control-Allow-Origin', '*') // add this line to set the header
+    ,
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)

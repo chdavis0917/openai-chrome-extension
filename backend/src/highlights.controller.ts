@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Delete, Param } from '@nestjs/common';
+import { Body, Controller, Get, Post, Delete, Param, Header } from '@nestjs/common';
 import { HighlightsService } from './highlights.service';
 import { OpenAIService } from './openai';
 
@@ -20,8 +20,8 @@ export class HighlightsController {
   }
 
   
-
   @Get('highlights')
+  @Header('Access-Control-Allow-Origin', '*')
   async findAll() {
     const highlights = await this.highlightsService.findAll();
     const summaryPromises = highlights.map((highlight) =>

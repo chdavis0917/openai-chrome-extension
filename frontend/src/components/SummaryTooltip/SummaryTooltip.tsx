@@ -13,8 +13,6 @@ const SummaryTooltip: React.FC = () => {
     return <div>Loading summary...</div>;
   }
 
-  // const { summary, url } = highlight;
-
   return (
     <div>
       <h2>{highlight.url}</h2>

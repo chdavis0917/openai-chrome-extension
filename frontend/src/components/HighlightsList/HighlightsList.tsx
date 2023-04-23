@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useHighlights } from '../../hooks/useHighlights';
 import { ReturnedHighlightData } from '../../types';
 
-// memoize the list item component
 const HighlightListItem = memo<{ highlight: ReturnedHighlightData; onDelete: (id: string) => void }>(
   ({ highlight, onDelete }) => {
     return (

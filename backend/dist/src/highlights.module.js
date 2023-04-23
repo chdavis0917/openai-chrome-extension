@@ -9,7 +9,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.HighlightsModule = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
-const config_1 = require("@nestjs/config");
 const highlight_model_1 = require("./highlight.model");
 const highlights_controller_1 = require("./highlights.controller");
 const highlights_service_1 = require("./highlights.service");
@@ -20,10 +19,9 @@ HighlightsModule = __decorate([
     (0, common_1.Module)({
         imports: [
             mongoose_1.MongooseModule.forFeature([{ name: 'Highlight', schema: highlight_model_1.HighlightSchema }]),
-            config_1.ConfigModule // Add ConfigModule here
         ],
         controllers: [highlights_controller_1.HighlightsController],
-        providers: [highlights_service_1.HighlightsService, openai_1.OpenAIService, config_1.ConfigService], // Add ConfigService to the list of providers
+        providers: [highlights_service_1.HighlightsService, openai_1.OpenAIService],
     })
 ], HighlightsModule);
 exports.HighlightsModule = HighlightsModule;

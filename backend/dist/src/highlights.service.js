@@ -26,11 +26,9 @@ const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const highlight_model_1 = require("./highlight.model");
-const config_1 = require("@nestjs/config");
 let HighlightsService = class HighlightsService {
-    constructor(highlightModel, configService) {
+    constructor(highlightModel) {
         this.highlightModel = highlightModel;
-        this.configService = configService;
     }
     createHighlight(url, highlightedText) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -71,8 +69,7 @@ let HighlightsService = class HighlightsService {
 HighlightsService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)(highlight_model_1.Highlight.name)),
-    __metadata("design:paramtypes", [mongoose_2.Model,
-        config_1.ConfigService])
+    __metadata("design:paramtypes", [mongoose_2.Model])
 ], HighlightsService);
 exports.HighlightsService = HighlightsService;
 //# sourceMappingURL=highlights.service.js.map

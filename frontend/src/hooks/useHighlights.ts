@@ -9,7 +9,7 @@ export const useHighlights = () => {
   useEffect(() => {
     const fetchHighlights = async () => {
       try {
-        const response = await axios.get('/api/highlights');
+        const response = await axios.get('http://localhost:3001/api/highlights');
         setHighlights(response.data.map((highlight: ReturnedHighlightData) => ({
           _id: highlight._id,
           url: highlight.url,

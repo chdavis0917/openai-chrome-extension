@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Frontdoor Chrome Extension",
+  "description": "Chrome extension with Open-AI API",
+  "version": "1.0.0",
+  "icons": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+  },
+  "action": {
+      "default_title": "Click Me",
+      "default_popup": "index.html"
+  }
+}
