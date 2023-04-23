@@ -32,7 +32,7 @@ export declare class HighlightsController {
     getSummary(body: {
         url: string;
         highlightedText: string;
-    }): Promise<import("./highlight.model").HighlightDocument>;
+    }): Promise<import("./highlight.model").HighlightDocument | undefined>;
     findAll(): Promise<{
         summary: import("openai").CreateCompletionResponseChoicesInner;
         _id: import("mongoose").Types.ObjectId;

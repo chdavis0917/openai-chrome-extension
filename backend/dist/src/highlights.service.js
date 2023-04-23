@@ -30,12 +30,13 @@ let HighlightsService = class HighlightsService {
     constructor(highlightModel) {
         this.highlightModel = highlightModel;
     }
-    createHighlight(url, highlightedText) {
+    createHighlight(url, highlightedText, summary) {
         return __awaiter(this, void 0, void 0, function* () {
             const highlight = new this.highlightModel({
                 _id: new mongoose_2.Types.ObjectId(),
                 url,
-                highlightedText
+                highlightedText,
+                summary
             });
             return yield highlight.save();
         });

@@ -10,11 +10,12 @@ export class HighlightsService {
     private readonly highlightModel: Model<Highlight>,
   ) {}
 
-  async createHighlight(url: string, highlightedText: string): Promise<HighlightDocument> {
+  async createHighlight(url: string, highlightedText: string, summary: string): Promise<HighlightDocument> {
     const highlight = new this.highlightModel({
       _id: new Types.ObjectId(),
       url,
-      highlightedText
+      highlightedText,
+      summary
     });
     return await highlight.save();
   }

@@ -33,8 +33,10 @@ let HighlightsController = class HighlightsController {
     getSummary(body) {
         return __awaiter(this, void 0, void 0, function* () {
             const summary = yield this.openaiService.generateSummary(body.highlightedText);
-            const newHighlight = yield this.highlightsService.createHighlight(body.url, body.highlightedText);
-            return newHighlight;
+            if (summary.text) {
+                const newHighlight = yield this.highlightsService.createHighlight(body.url, body.highlightedText, summary.text);
+                return newHighlight;
+            }
         });
     }
     findAll() {

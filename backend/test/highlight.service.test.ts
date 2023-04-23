@@ -35,8 +35,8 @@ describe('HighlightsService', () => {
   describe('findAll', () => {
     it('should return an array of highlights', async () => {
       const highlights = [
-        new Highlight(new Types.ObjectId(), 'http://example.com', 'This is a highlighted text'),
-        new Highlight(new Types.ObjectId(), 'http://example.org', 'This is another highlighted text'),
+        new Highlight(new Types.ObjectId(), 'http://example.com', 'This is a highlighted text', 'this is a summary'),
+        new Highlight(new Types.ObjectId(), 'http://example.org', 'This is another highlighted text', 'this is another summary'),
       ];
       jest.spyOn(highlightModel, 'find').mockReturnValueOnce({
         exec: jest.fn().mockResolvedValueOnce(highlights as HighlightDocument[]),

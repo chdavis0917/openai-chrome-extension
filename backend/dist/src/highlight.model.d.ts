@@ -28,12 +28,14 @@ export declare class Highlight {
     _id: Types.ObjectId;
     url: string;
     highlightedText: string;
+    summary: string;
     toJSON(): {
         _id: Types.ObjectId;
         url: string;
         highlightedText: string;
+        summary: string;
     };
-    constructor(_id: Types.ObjectId, url: string, highlightedText: string);
+    constructor(_id: Types.ObjectId, url: string, highlightedText: string, summary: string);
 }
 export declare const HighlightSchema: import("mongoose").Schema<Highlight, import("mongoose").Model<Highlight, any, any, any, Document<unknown, any, Highlight> & Omit<Highlight & Required<{
     _id: Types.ObjectId;

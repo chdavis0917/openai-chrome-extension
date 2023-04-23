@@ -14,18 +14,23 @@ export class Highlight {
   @Prop()
   highlightedText: string;
 
+  @Prop()
+  summary: string;
+
   toJSON() {
     return {
       _id: this._id,
       url: this.url,
       highlightedText: this.highlightedText,
+      summary: this.summary,
     };
   }
 
-  constructor(_id:Types.ObjectId, url: string, highlightedText: string) {
+  constructor(_id:Types.ObjectId, url: string, highlightedText: string, summary: string) {
     this._id = _id;
     this.url = url;
     this.highlightedText = highlightedText;
+    this.summary = summary;
   }
 }
 

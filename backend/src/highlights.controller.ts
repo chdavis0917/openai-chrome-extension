@@ -12,11 +12,14 @@ export class HighlightsController {
   @Post('summary')
   async getSummary(@Body() body: { url: string, highlightedText: string }) {
     const summary = await this.openaiService.generateSummary(body.highlightedText);
+    if (summary.text) {
     const newHighlight = await this.highlightsService.createHighlight(
       body.url,
-      body.highlightedText
+      body.highlightedText,
+      summary.text
     );
     return newHighlight;
+    }
   }
 
   
