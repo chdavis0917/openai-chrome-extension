@@ -1,6 +1,6 @@
-# Frontdoor Technical Challenge
+# OpenAI Chrome Extension
 
-This is a web application that allows you to summarize web pages and store the highlights and summaries in a MongoDB database. It also includes a Chrome extension that allows you to quickly highlight text on web pages and summarize them.
+This is a Chrome extension that allows you to summarize web pages and store the highlights and summaries in a MongoDB database. It also includes a Chrome extension that allows you to quickly highlight text on web pages and summarize them.
 
 
 ## Installation
@@ -17,11 +17,13 @@ Install dependencies in the root directory:
 cd project
 npm install
 ```
-Install dependencies in the frontend and backend directories:
+Install dependencies and bundle frontend in the frontend and backend directories:
 
 ```bash
 cd frontend
 npm install
+npm start
+CTRL + C to exit webpack build
 cd ../backend
 npm install
 ```
@@ -45,7 +47,7 @@ The Chrome extension allows you to highlight text on web pages and create a summ
 
 ### Frontend
 To see the frontend content open Google Chrome's extension page and enable developer mode.
-Click on "Load Unpacked". Navigate to the "frontend" directory. Look for the "dist" folder and click on it. Select "Open". The Google Chrome extension should now be available for use on the extensions page.
+Click on "Load Unpacked". Navigate to the "frontend" directory. Look for the "dist" folder (created by Webpack when you ran "npm start" in the frontend directory) and click on it. Select "Open". The Google Chrome extension should now be available for use on the extensions page.
 
 ### Backend
 To fire up the backend, navigate into the "backend" directory via the terminal and run "npm start". The server is now running on localhost:3001. The NestJS server must be running for the Google Chrome extension to perform its necessary functionality.
