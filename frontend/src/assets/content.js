@@ -1,6 +1,7 @@
 document.addEventListener('mouseup', function(event) {
     var selectedText = window.getSelection().toString();
     console.log("selectedText is: ", selectedText);
+    if (selectedText.length) {
     chrome.runtime.sendMessage({ message: 'getSelectedText' }, function(response) {
       var xhr = new XMLHttpRequest();
       xhr.open('POST', 'http://localhost:3001/api/summary', true);
@@ -29,5 +30,6 @@ document.addEventListener('mouseup', function(event) {
       };
       xhr.send(JSON.stringify(data));
     });
+    };
   });
   
