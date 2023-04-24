@@ -1,7 +1,7 @@
 document.addEventListener('mouseup', function(event) {
     var selectedText = window.getSelection().toString();
     console.log("selectedText is: ", selectedText);
-    if (selectedText.length) {
+    if (selectedText.length > 0) {
     chrome.runtime.sendMessage({ message: 'getSelectedText' }, function(response) {
       var xhr = new XMLHttpRequest();
       xhr.open('POST', 'http://localhost:3001/api/summary', true);
