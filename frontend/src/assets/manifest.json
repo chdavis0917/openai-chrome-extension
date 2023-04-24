@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Frontdoor Chrome Extension",
+  "name": "OpenAI Chrome Extension",
   "description": "Chrome extension with Open-AI API",
   "version": "1.0.0",
   "icons": {
