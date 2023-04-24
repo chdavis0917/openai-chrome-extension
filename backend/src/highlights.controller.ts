@@ -1,6 +1,8 @@
-import { Body, Controller, Get, Post, Delete, Param, Header } from '@nestjs/common';
+import { Body, Controller, Get, Post, Delete, Param } from '@nestjs/common';
 import { HighlightsService } from './highlights.service';
 import { OpenAIService } from './openai';
+import * as express from 'express';
+import { Request, Response, NextFunction } from 'express';
 
 @Controller('api')
 export class HighlightsController {
@@ -13,18 +15,16 @@ export class HighlightsController {
   async getSummary(@Body() body: { url: string, highlightedText: string }) {
     const summary = await this.openaiService.generateSummary(body.highlightedText);
     if (summary.text) {
-    const newHighlight = await this.highlightsService.createHighlight(
-      body.url,
-      body.highlightedText,
-      summary.text
-    );
-    return newHighlight;
+      const newHighlight = await this.highlightsService.createHighlight(
+        body.url,
+        body.highlightedText,
+        summary.text
+      );
+      return newHighlight;
     }
   }
 
-  
   @Get('highlights')
-  @Header('Access-Control-Allow-Origin', '*')
   async findAll() {
     const highlights = await this.highlightsService.findAll();
     const summaryPromises = highlights.map((highlight) =>
@@ -43,4 +43,14 @@ export class HighlightsController {
     return { message: `Highlight with id ${_id} has been deleted` };
   }
   
+  configure(consumer: import('@nestjs/common').MiddlewareConsumer) {
+    consumer
+      .apply(express.json(), express.urlencoded({ extended: true }), express.static('public'), (req: Request, res: Response, next: NextFunction) => {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+        res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+        next();
+      })
+      .forRoutes('*');
+  }
 }

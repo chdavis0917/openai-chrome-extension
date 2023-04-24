@@ -26,7 +26,7 @@ export const useHighlights = () => {
 
   const deleteHighlight = async (_id: string) => {
     try {
-      await axios.delete(`/api/highlights/${_id}`);
+      await axios.delete(`http://localhost:3001/api/highlights/${_id}`);
       setHighlights((prevHighlights) =>
         prevHighlights.filter((highlight) => highlight._id !== _id)
       );

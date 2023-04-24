@@ -42,4 +42,5 @@ export declare class HighlightsController {
     deleteHighlight(_id: string): Promise<{
         message: string;
     }>;
+    configure(consumer: import('@nestjs/common').MiddlewareConsumer): void;
 }
