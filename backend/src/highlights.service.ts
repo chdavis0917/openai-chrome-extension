@@ -2,21 +2,20 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { Highlight, HighlightDocument } from './highlight.model';
-import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class HighlightsService {
   constructor(
     @InjectModel(Highlight.name)
     private readonly highlightModel: Model<Highlight>,
-    private readonly configService: ConfigService,
   ) {}
 
-  async createHighlight(url: string, highlightedText: string): Promise<HighlightDocument> {
+  async createHighlight(url: string, highlightedText: string, summary: string): Promise<HighlightDocument> {
     const highlight = new this.highlightModel({
       _id: new Types.ObjectId(),
       url,
-      highlightedText
+      highlightedText,
+      summary
     });
     return await highlight.save();
   }

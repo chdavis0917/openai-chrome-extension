@@ -9,7 +9,7 @@ export const useHighlights = () => {
   useEffect(() => {
     const fetchHighlights = async () => {
       try {
-        const response = await axios.get('/api/highlights');
+        const response = await axios.get('http://localhost:3001/api/highlights');
         setHighlights(response.data.map((highlight: ReturnedHighlightData) => ({
           _id: highlight._id,
           url: highlight.url,
@@ -26,7 +26,7 @@ export const useHighlights = () => {
 
   const deleteHighlight = async (_id: string) => {
     try {
-      await axios.delete(`/api/highlights/${_id}`);
+      await axios.delete(`http://localhost:3001/api/highlights/${_id}`);
       setHighlights((prevHighlights) =>
         prevHighlights.filter((highlight) => highlight._id !== _id)
       );

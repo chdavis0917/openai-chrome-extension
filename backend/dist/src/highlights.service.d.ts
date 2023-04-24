@@ -1,11 +1,9 @@
 import { Model } from 'mongoose';
 import { Highlight, HighlightDocument } from './highlight.model';
-import { ConfigService } from '@nestjs/config';
 export declare class HighlightsService {
     private readonly highlightModel;
-    private readonly configService;
-    constructor(highlightModel: Model<Highlight>, configService: ConfigService);
-    createHighlight(url: string, highlightedText: string): Promise<HighlightDocument>;
+    constructor(highlightModel: Model<Highlight>);
+    createHighlight(url: string, highlightedText: string, summary: string): Promise<HighlightDocument>;
     findAll(): Promise<Highlight[]>;
     deleteHighlight(_id: string): Promise<Highlight>;
     updateHighlight(id: number, url: string, highlightedText: string): Promise<Highlight>;

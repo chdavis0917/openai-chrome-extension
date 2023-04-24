@@ -1,7 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { Link } from 'react-router-dom';
 import { useHighlights } from '../../hooks/useHighlights';
 import { ReturnedHighlightData } from '../../types';
+
+const HighlightListItem = memo<{ highlight: ReturnedHighlightData; onDelete: (id: string) => void }>(
+  ({ highlight, onDelete }) => {
+    return (
+      <li>
+        <Link to={`/summary/${highlight._id}`}>{highlight.highlightedText}</Link>
+        <button onClick={() => onDelete(highlight._id)}>Delete</button>
+      </li>
+    );
+  }
+);
 
 function HighlightsList() {
   const [loading, setLoading] = useState(true);
@@ -21,10 +32,7 @@ function HighlightsList() {
       ) : (
         <ul>
           {highlights.map((highlight: ReturnedHighlightData) => (
-            <li key={highlight._id}>
-              <Link to={`/summary/${highlight._id}`}>{highlight.highlightedText}</Link>
-              <button onClick={() => deleteHighlight(highlight._id)}>Delete</button>
-            </li>
+            <HighlightListItem key={highlight._id} highlight={highlight} onDelete={deleteHighlight} />
           ))}
         </ul>
       )}

@@ -5,6 +5,8 @@ body {
   font-size: 12px;
   padding: 10px;
   margin: 0;
+  min-width: 400px;
+  min-height: 600px;
 }
 
 h1 {

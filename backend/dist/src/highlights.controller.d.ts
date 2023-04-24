@@ -32,7 +32,7 @@ export declare class HighlightsController {
     getSummary(body: {
         url: string;
         highlightedText: string;
-    }): Promise<import("./highlight.model").HighlightDocument>;
+    }): Promise<import("./highlight.model").HighlightDocument | undefined>;
     findAll(): Promise<{
         summary: import("openai").CreateCompletionResponseChoicesInner;
         _id: import("mongoose").Types.ObjectId;
@@ -42,4 +42,5 @@ export declare class HighlightsController {
     deleteHighlight(_id: string): Promise<{
         message: string;
     }>;
+    configure(consumer: import('@nestjs/common').MiddlewareConsumer): void;
 }

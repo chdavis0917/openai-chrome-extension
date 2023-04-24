@@ -18,12 +18,14 @@ let Highlight = class Highlight {
             _id: this._id,
             url: this.url,
             highlightedText: this.highlightedText,
+            summary: this.summary,
         };
     }
-    constructor(_id, url, highlightedText) {
+    constructor(_id, url, highlightedText, summary) {
         this._id = _id;
         this.url = url;
         this.highlightedText = highlightedText;
+        this.summary = summary;
     }
 };
 __decorate([
@@ -38,9 +40,13 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], Highlight.prototype, "highlightedText", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Highlight.prototype, "summary", void 0);
 Highlight = __decorate([
     (0, mongoose_1.Schema)(),
-    __metadata("design:paramtypes", [mongoose_2.Types.ObjectId, String, String])
+    __metadata("design:paramtypes", [mongoose_2.Types.ObjectId, String, String, String])
 ], Highlight);
 exports.Highlight = Highlight;
 exports.HighlightSchema = mongoose_1.SchemaFactory.createForClass(Highlight);

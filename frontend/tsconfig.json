@@ -1,22 +1,12 @@
 {
-    "compilerOptions": {
-      "target": "es5",
-      "lib": ["dom", "es2017"],
-      "module": "esnext",
-      "moduleResolution": "node",
+  "compilerOptions": {
       "jsx": "react",
+      "module": "es6",
+      "target": "es6",
+      "moduleResolution": "node",
       "esModuleInterop": true,
-      "strict": true,
-      "noImplicitAny": true,
-      "noImplicitReturns": true,
-      "noImplicitThis": true,
-      "noUnusedLocals": true,
-      "noUnusedParameters": true,
-      "resolveJsonModule": true,
-      "isolatedModules": true,
-      "allowSyntheticDefaultImports": true,
-      "sourceMap": true
-    },
-    "exclude": ["node_modules", "build"]
-  }
-  
+      "types": ["jest"]
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["node_modules"],
+}
